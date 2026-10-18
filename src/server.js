@@ -24,7 +24,7 @@ app.use('/Movies' , movieRoutes);
 app.use('/Movie', movieRoutes);
 
 app.use('/',movieRoutes); // This command routes with all the api endpoints of MovieRoutes.js
-app.use('/api/auth',authRoutes); 
+app.use("/api/auth",authRoutes); // This code routes with all the api endpoints of authRoutes.js but with endpoints starting from "/api/auth"
 
 app.get("/NH", (req,res) => {
     res.json({love : "This is divine love"});

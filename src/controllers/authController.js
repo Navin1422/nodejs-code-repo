@@ -1,5 +1,6 @@
 
 const register = async (req,res) => {
+    
     res.json({this:"auth controller"});
 }
 
