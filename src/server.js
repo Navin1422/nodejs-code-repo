@@ -9,6 +9,8 @@ import {connectDB, disconnectDB} from './config/db.js';
 
 // 4) Import Routes
 import movieRoutes from './routes/MovieRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
 
 config(); // calling config function for dotenv
 connectDB(); // Calling connectDB() function which is in ./config/db.js file to connect with database from server
@@ -16,9 +18,13 @@ connectDB(); // Calling connectDB() function which is in ./config/db.js file to 
 const app = express();
 
 // API ROUTES
-app.use('navinharitha' , movieRoutes);
+
+// Api endpoints /Movies and /Movie is not specifically written in routes/MovieRoutes.js so the node js re-routes those two with default endpoint '/' - which has been mentioned in MovieRoutes.js
 app.use('/Movies' , movieRoutes);
-app.use('/',movieRoutes);
+app.use('/Movie', movieRoutes);
+
+app.use('/',movieRoutes); // This command routes with all the api endpoints of MovieRoutes.js
+app.use('/api/auth',authRoutes); 
 
 app.get("/NH", (req,res) => {
     res.json({love : "This is divine love"});
