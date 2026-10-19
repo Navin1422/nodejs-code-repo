@@ -17,6 +17,11 @@ connectDB(); // Calling connectDB() function which is in ./config/db.js file to 
 
 const app = express();
 
+// Body parsing middlewares , this is for sending frontend datas(json) through req to backend servers.
+app.use(express.json()); // allows express/node js to use json datas in request req.body
+app.use(express.urlencoded({ extended: true })); // allows express to automatically parse data from an html-frontend form submission so that we can access it in (reques)req.body.
+
+
 // API ROUTES
 
 // Api endpoints /Movies and /Movie is not specifically written in routes/MovieRoutes.js so the node js re-routes those two with default endpoint '/' - which has been mentioned in MovieRoutes.js

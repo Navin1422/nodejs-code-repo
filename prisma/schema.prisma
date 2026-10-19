@@ -19,7 +19,7 @@ datasource db {
 }
 
 model User{
-  id String @id @default(uuid())
+  id String @id @default(uuid()) // uuid() here means that prisma will automatically generate a random, 36-character alphanumeric string (such as 123e4567-e89b-12d3-a456-426614174000) to act as the unique primary key (@id) for that entry
   name String
   email String @unique
   password String 
