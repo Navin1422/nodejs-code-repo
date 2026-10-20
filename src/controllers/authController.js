@@ -51,8 +51,33 @@ const register = async (req,res) => {
 
 }
 
-const signup = async (req,res) => {
-    res.send("User sign up page");
+// Using JWTs for Logging 
+
+const login = async (req,res) => {
+    const { email , password } = req.body;
+
+    // Check is email exists in the server(DB)
+    const User = await prisma.user.findUnique({
+        where: {email: email},
+    })
+
+    if(!User){
+        return res.status(401).json({error: "Invalid Email or Password"});
+    }
+
+    // Check is its an correct password entered by user
+    const checkPass = await bcrypt.compare(password, User.password);
+
+    if(!checkPass){
+        return res.status(401).json({error: "Invalid Email or Password"});
+    }
+
+    res.status(202).json({
+        datas: {
+            
+            email: User.email,
+        }
+    })
 }
 
-export { register , signup };
+export { register, login };
